@@ -14,11 +14,11 @@ Este projeto tem como finalidade desenvolver uma API RESTfull para Sistema de Us
 
 Os commits neste repositório seguem a seguinte convenção:
 
-- [Estória de Usuário 1] Implementada funcionalidade listar
-- [Estória de Usuário 2] Implementada funcionalidade cadastrar
-- [Estória de Usuário 3] Implementada funcionalidade buscar
-- [Estória de Usuário 4] Implementada funcionalidade remover
-- [Estória de Usuário 5] Implementada funcionalidade atualizar
+- [Estória de Usuário] Implementar listar
+- [Estória de Usuário] Implementar cadastrar
+- [Estória de Usuário] Implementar buscar
+- [Estória de Usuário] Implementar remover
+- [Estória de Usuário] Implementar atualizar
 
 
 ## Estórias do Carro
@@ -33,11 +33,11 @@ Os commits neste repositório seguem a seguinte convenção:
 
 Os commits neste repositório seguem a seguinte convenção:
 
-- [Estória do Carro 1] Implementada funcionalidade listar
-- [Estória do Carro 2] Implementada funcionalidade cadastrar
-- [Estória do Carro 3] Implementada funcionalidade buscar
-- [Estória do Carro 4] Implementada funcionalidade remover
-- [Estória do Carro 5] Implementada funcionalidade atualizar
+- [Estória do Carro] Implementar listar
+- [Estória do Carro] Implementar cadastrar
+- [Estória do Carro] Implementar buscar
+- [Estória do Carro] Implementar remover
+- [Estória do Carro] Implementar atualizar
 
 ## Estórias da Autenticação
 
@@ -48,5 +48,5 @@ Os commits neste repositório seguem a seguinte convenção:
 
 Os commits neste repositório seguem a seguinte convenção:
 
-- [Estória da Autenticação 1] Implementada funcionalidade de autenticação
-- [Estória da Autenticação 2] Implementada funcionalidade de informações do usuário logado
+- [Estória da Autenticação] Implementar autenticação
+- [Estória da Autenticação] Implementar informações do usuário logado

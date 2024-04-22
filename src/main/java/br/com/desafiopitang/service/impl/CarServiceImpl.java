@@ -59,9 +59,36 @@ public class CarServiceImpl implements CarService {
 		}
 	}
 	
+	@Override
+	public CarDto update(Long id, CarDto dto) {
+		verifyLicensePlateUpdate(id, dto);
+		Car carro = dto.toCarro();
+		Optional<Car> carUpdate = repository.findById(id);
+		Car update = mapper(carro, carUpdate.get());
+		repository.save(update);
+		return CarDto.fromCar(carro);
+	}
+	
 	private void verifyLicensePlate(CarDto dto) {
 		if(repository.existsByLicensePlate(dto.getLicensePlate())) {
 			throw new LicensePlateAlreadyExistsException();
 		}
+	}
+	
+	private void verifyLicensePlateUpdate(Long id, CarDto dto) {
+		Optional<Car> car = repository.findByLicensePlate(dto.getLicensePlate());
+		if(car.isPresent()) {
+			if(!car.get().getId().equals(id)) {
+				throw new LicensePlateAlreadyExistsException();
+			}
+		}
+	}
+	
+	private Car mapper(Car carro, Car carUpdate) {
+		carUpdate.setYear(carro.getYear());
+		carUpdate.setLicensePlate(carro.getLicensePlate());
+		carUpdate.setModel(carro.getModel());
+		carUpdate.setColor(carro.getColor());
+		return carUpdate;
 	}
 }

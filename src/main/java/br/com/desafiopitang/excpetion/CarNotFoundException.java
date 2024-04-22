@@ -1,5 +1,7 @@
 package br.com.desafiopitang.excpetion;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,10 +14,10 @@ public class CarNotFoundException extends RuntimeException {
 	private Integer code;
 
 	
-	public CarNotFoundException(String status, Integer code) {
+	public CarNotFoundException() {
 		super("Car not found");
-		this.status = status;
-		this.code = code;
+		this.status = HttpStatus.NOT_FOUND.name();
+		this.code = HttpStatus.NOT_FOUND.value();
 	}
 	
 	public CarNotFoundException(String message, String status, Integer code) {

@@ -1,5 +1,7 @@
 package br.com.desafiopitang.excpetion;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,10 +13,10 @@ public class LicensePlateAlreadyExistsException extends RuntimeException {
 	private String status;
 	private Integer code;
 
-	public LicensePlateAlreadyExistsException(String status, Integer code) {
+	public LicensePlateAlreadyExistsException() {
 		super("License plate already exists");
-		this.status = status;
-		this.code = code;
+		this.status = HttpStatus.CONFLICT.name();
+		this.code = HttpStatus.CONFLICT.value();
 	}
 	
 	public LicensePlateAlreadyExistsException(String message, String status, Integer code) {

@@ -20,7 +20,9 @@ public class RestHandlerException {
             return handleValidationExceptions((MethodArgumentNotValidException) ex);
         } else if (ex instanceof LicensePlateAlreadyExistsException) { 
         	return handleLicensePlateAlreadyExistsException((LicensePlateAlreadyExistsException) ex);
-        } else {
+        } else if (ex instanceof CarNotFoundException) { 
+        	return handleCarNotFoundException((CarNotFoundException) ex);
+		}else {
         	return handleInternalServerError();
         }
     }
@@ -43,6 +45,13 @@ public class RestHandlerException {
     	MessageError error = new MessageError(ex.getMessage(), statusCode);
     	return ResponseEntity.status(ex.getCode()).body(error);
 	}
+    
+    private ResponseEntity<MessageError> handleCarNotFoundException(CarNotFoundException ex) {
+    	StatusCodeException statusCode = new StatusCodeException(ex.getStatus(), ex.getCode());
+    	MessageError error = new MessageError(ex.getMessage(), statusCode);
+    	return ResponseEntity.status(ex.getCode()).body(error);
+
+    }
     
     private ResponseEntity<MessageError> handleInternalServerError() {
     	StatusCodeException statusCode = new StatusCodeException(HttpStatus.INTERNAL_SERVER_ERROR.name(), HttpStatus.INTERNAL_SERVER_ERROR.value());

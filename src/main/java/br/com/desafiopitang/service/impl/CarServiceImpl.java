@@ -1,16 +1,17 @@
 package br.com.desafiopitang.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.desafiopitang.dao.CarsDao;
 import br.com.desafiopitang.dto.CarDto;
+import br.com.desafiopitang.excpetion.CarNotFoundException;
 import br.com.desafiopitang.excpetion.LicensePlateAlreadyExistsException;
 import br.com.desafiopitang.model.Car;
 import br.com.desafiopitang.service.CarService;
@@ -36,9 +37,19 @@ public class CarServiceImpl implements CarService {
 		return CarDto.fromCar(carro);
 	}
 	
+	@Override
+	public CarDto findById(Long id) {
+		Optional<Car> car = repository.findById(id);
+		if(car.isPresent()) {
+			return CarDto.fromCar(car.get());
+		} else {
+			throw new CarNotFoundException();
+		}
+	}
+	
 	private void verifyLicensePlate(CarDto dto) {
 		if(repository.existsByLicensePlate(dto.getLicensePlate())) {
-			throw new LicensePlateAlreadyExistsException(HttpStatus.CONFLICT.name(), HttpStatus.CONFLICT.value());
+			throw new LicensePlateAlreadyExistsException();
 		}
 	}
 }

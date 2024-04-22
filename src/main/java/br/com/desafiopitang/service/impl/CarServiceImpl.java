@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.desafiopitang.dao.CarsDao;
 import br.com.desafiopitang.dto.CarDto;
+import br.com.desafiopitang.excpetion.CarNotDeleteException;
 import br.com.desafiopitang.excpetion.CarNotFoundException;
 import br.com.desafiopitang.excpetion.LicensePlateAlreadyExistsException;
 import br.com.desafiopitang.model.Car;
@@ -44,6 +45,17 @@ public class CarServiceImpl implements CarService {
 			return CarDto.fromCar(car.get());
 		} else {
 			throw new CarNotFoundException();
+		}
+	}
+	
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		Optional<Car> car = repository.findById(id);
+		if(car.isPresent()) {
+			repository.delete(car.get());
+		} else {
+			throw new CarNotDeleteException();
 		}
 	}
 	

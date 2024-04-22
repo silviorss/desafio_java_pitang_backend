@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,14 @@ public class CarController {
 	public ResponseEntity<CarDto> findById(
 			@PathVariable("id") Long id) {
 		return ResponseEntity.ok(service.findById(id));
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@DeleteMapping("/{id}")
+	public ResponseEntity deleteById(
+			@PathVariable("id") Long id) {
+		service.delete(id);
+		return ResponseEntity.ok().build(); 
 	}
 	
 }

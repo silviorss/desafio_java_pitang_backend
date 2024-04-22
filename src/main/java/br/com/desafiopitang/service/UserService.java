@@ -1,5 +1,5 @@
 package br.com.desafiopitang.service;
 
-public interface UsuarioService {
+public interface UserService {
 
 }

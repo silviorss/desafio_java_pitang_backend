@@ -1,4 +1,4 @@
-package br.com.desafiopitang.resource;
+package br.com.desafiopitang.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 
 @RestController
 @RequestMapping("/health")
-public class HealthResource {
+public class HealthController {
 
 	@GetMapping
     @Produces(MediaType.TEXT_PLAIN)

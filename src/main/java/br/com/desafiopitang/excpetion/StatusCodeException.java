@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class MessageError {
-	
-	private String message;
-	private StatusCodeException errorCode;
+public class StatusCodeException {
+
+	private String status;
+	private Integer code;
 }

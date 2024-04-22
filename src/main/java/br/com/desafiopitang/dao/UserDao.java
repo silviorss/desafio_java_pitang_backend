@@ -3,9 +3,9 @@ package br.com.desafiopitang.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.desafiopitang.model.Usuario;
+import br.com.desafiopitang.model.User;
 
 @Repository
-public interface UsuarioDao extends JpaRepository<Usuario, Long>{
+public interface UserDao extends JpaRepository<User, Long>{
 
 }

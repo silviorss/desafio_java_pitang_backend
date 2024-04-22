@@ -16,16 +16,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "carro")
+@Table(name = "car")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class Carro implements Serializable {
+public class Car implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@SequenceGenerator(name = "carro_id_seq", sequenceName = "carro_id_seq", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "carro_id_seq")
-	@Column(name = "id_carro")
+	@SequenceGenerator(name = "car_id_seq", sequenceName = "car_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_id_seq")
+	@Column(name = "id_car")
 	private Long id;
 	
 	@Column(name = "year")

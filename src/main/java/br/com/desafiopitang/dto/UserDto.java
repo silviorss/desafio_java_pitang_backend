@@ -7,15 +7,15 @@ import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 
-import br.com.desafiopitang.model.Carro;
-import br.com.desafiopitang.model.Usuario;
+import br.com.desafiopitang.model.Car;
+import br.com.desafiopitang.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class UsuarioDto {
+public class UserDto {
 
 	private Long id;
 	private String firstName;
@@ -25,10 +25,10 @@ public class UsuarioDto {
 	private String login;
 	private String password;
 	private String phone;
-	private List<CarroDto> cars;
+	private List<CarDto> cars;
 	
-	public Usuario toUsuario() {
-		Usuario entity = new Usuario();
+	public User toUsuario() {
+		User entity = new User();
 		
 		entity.setId(this.id);
 		entity.setFirstName(this.firstName);
@@ -43,8 +43,8 @@ public class UsuarioDto {
 		return entity;
 	}
 	
-	public static UsuarioDto fromUsuario(Usuario entity) {
-		UsuarioDto dto = new UsuarioDto();
+	public static UserDto fromUsuario(User entity) {
+		UserDto dto = new UserDto();
 		
 		dto.setId(entity.getId());
 		dto.setFirstName(entity.getFirstName());
@@ -58,19 +58,19 @@ public class UsuarioDto {
 		return dto;
 	}
 
-	private List<Carro> toListCarros(List<CarroDto> cars) {
+	private List<Car> toListCarros(List<CarDto> cars) {
 		return cars.stream()
-				.map(CarroDto::toCarro)
+				.map(CarDto::toCarro)
 				.collect(Collectors.toList());
 	}
 	
-	public static List<CarroDto> fromListCarros(List<Carro> cars) {
+	public static List<CarDto> fromListCarros(List<Car> cars) {
 		return cars.stream()
-				.map(CarroDto::fromCarro)
+				.map(CarDto::fromCar)
 				.collect(Collectors.toList());
 	}
 	
-	public static UsuarioDto convertToJson(final String json) {
-		return new Gson().fromJson(json, UsuarioDto.class);
+	public static UserDto convertToJson(final String json) {
+		return new Gson().fromJson(json, UserDto.class);
 	}
 }

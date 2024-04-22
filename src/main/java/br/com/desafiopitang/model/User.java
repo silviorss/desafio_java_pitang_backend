@@ -22,16 +22,16 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "user")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class Usuario implements Serializable {
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "usuario_id_seq", sequenceName = "usuario_id_seq", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_id_seq")
-	@Column(name = "id_usuario")
+	@SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+	@Column(name = "id_user")
 	private Long id;
 	
 	@Column(name = "firstName")
@@ -56,8 +56,8 @@ public class Usuario implements Serializable {
 	private String phone;
 	
 	@OneToMany
-	@JoinTable(name = "usuario_carros",
-	joinColumns = {@JoinColumn(name = "id_usuario")},
-	inverseJoinColumns = {@JoinColumn(name = "id_carro")})
-	private List<Carro> cars;
+	@JoinTable(name = "user_cars",
+	joinColumns = {@JoinColumn(name = "id_user")},
+	inverseJoinColumns = {@JoinColumn(name = "id_car")})
+	private List<Car> cars;
 }

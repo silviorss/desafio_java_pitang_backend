@@ -16,13 +16,17 @@ import lombok.Setter;
 public class CarDto {
 
 	private Long id;
+	
 	@NotNull(message = "Missing fields")
 	private Integer year;
+	
 	@NotBlank(message = "Missing fields")
 	@LicensePlate
 	private String licensePlate;
+	
 	@NotBlank(message = "Missing fields")
 	private String model;
+	
 	@NotBlank(message = "Missing fields")
 	private String color;
 	

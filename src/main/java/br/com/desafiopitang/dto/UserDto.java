@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotNull;
+
 import com.google.gson.Gson;
 
 import br.com.desafiopitang.model.Car;
 import br.com.desafiopitang.model.User;
+import br.com.desafiopitang.validation.constraints.Email;
+import br.com.desafiopitang.validation.constraints.Phone;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,13 +22,30 @@ import lombok.Setter;
 public class UserDto {
 
 	private Long id;
+	
+	@NotNull(message = "Missing fields")
 	private String firstName;
+	
+	@NotNull(message = "Missing fields")
 	private String lastName;
+	
+	@NotNull(message = "Missing fields")
+	@Email
 	private String email;
+	
+	@NotNull(message = "Missing fields")
 	private LocalDate birthday;
+	
+	@NotNull(message = "Missing fields")
 	private String login;
+	
+	@NotNull(message = "Missing fields")
 	private String password;
+	
+	@NotNull(message = "Missing fields")
+	@Phone
 	private String phone;
+	
 	private List<CarDto> cars;
 	
 	public User toUsuario() {

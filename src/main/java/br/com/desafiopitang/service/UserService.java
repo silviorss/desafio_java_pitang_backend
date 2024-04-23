@@ -7,4 +7,5 @@ import br.com.desafiopitang.dto.UserDto;
 public interface UserService {
 
 	List<UserDto> listAllUsers();
+	UserDto save(UserDto dto);
 }

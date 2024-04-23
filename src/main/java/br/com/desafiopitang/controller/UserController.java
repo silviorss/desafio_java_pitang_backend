@@ -2,9 +2,13 @@ package br.com.desafiopitang.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +27,12 @@ public class UserController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<List<UserDto>> getAll() {
 		return ResponseEntity.ok(service.listAllUsers());
+	}
+	
+	@PostMapping
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<UserDto> save(
+			@RequestBody @Valid UserDto dto) {
+		return ResponseEntity.ok(service.save(dto));
 	}
 }

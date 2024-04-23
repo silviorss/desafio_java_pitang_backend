@@ -32,7 +32,7 @@ public class CarServiceImpl implements CarService {
 	@Override
 	@Transactional
 	public CarDto save(CarDto dto) {
-		verifyLicensePlate(dto);
+		verifyLicensePlate(dto.getLicensePlate());
 		Car carro = dto.toCarro();
 		repository.save(carro);
 		return CarDto.fromCar(carro);
@@ -60,6 +60,7 @@ public class CarServiceImpl implements CarService {
 	}
 	
 	@Override
+	@Transactional
 	public CarDto update(Long id, CarDto dto) {
 		verifyLicensePlateUpdate(id, dto);
 		Car carro = dto.toCarro();
@@ -69,8 +70,8 @@ public class CarServiceImpl implements CarService {
 		return CarDto.fromCar(carro);
 	}
 	
-	private void verifyLicensePlate(CarDto dto) {
-		if(repository.existsByLicensePlate(dto.getLicensePlate())) {
+	private void verifyLicensePlate(String licensePlate) {
+		if(repository.existsByLicensePlate(licensePlate)) {
 			throw new LicensePlateAlreadyExistsException();
 		}
 	}

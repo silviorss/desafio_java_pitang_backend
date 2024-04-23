@@ -24,6 +24,10 @@ public class RestHandlerException {
         	return handleCarNotFoundException((CarNotFoundException) ex);
 		} else if (ex instanceof CarNotDeleteException) {
 			return handleCarNotDeleteException((CarNotDeleteException) ex);
+		} else if (ex instanceof EmailAlreadyExistsException) {
+			return handleEmailAlreadyExistsException((EmailAlreadyExistsException) ex);
+		} else if (ex instanceof LoginAlreadyExistsException) {
+			return handleLoginAlreadyExistsException((LoginAlreadyExistsException) ex);
 		} else {
         	return handleInternalServerError();
         }
@@ -55,6 +59,18 @@ public class RestHandlerException {
     }
     
     private ResponseEntity<MessageError> handleCarNotDeleteException(CarNotDeleteException ex) {
+    	StatusCodeException statusCode = new StatusCodeException(ex.getStatus(), ex.getCode());
+    	MessageError error = new MessageError(ex.getMessage(), statusCode);
+    	return ResponseEntity.status(ex.getCode()).body(error);
+	}
+    
+    private ResponseEntity<MessageError> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+    	StatusCodeException statusCode = new StatusCodeException(ex.getStatus(), ex.getCode());
+    	MessageError error = new MessageError(ex.getMessage(), statusCode);
+    	return ResponseEntity.status(ex.getCode()).body(error);
+	}
+    
+    private ResponseEntity<MessageError> handleLoginAlreadyExistsException(LoginAlreadyExistsException ex) {
     	StatusCodeException statusCode = new StatusCodeException(ex.getStatus(), ex.getCode());
     	MessageError error = new MessageError(ex.getMessage(), statusCode);
     	return ResponseEntity.status(ex.getCode()).body(error);

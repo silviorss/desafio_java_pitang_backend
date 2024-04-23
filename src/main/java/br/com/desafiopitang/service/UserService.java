@@ -8,4 +8,5 @@ public interface UserService {
 
 	List<UserDto> listAllUsers();
 	UserDto save(UserDto dto);
+	UserDto findById(Long id);
 }

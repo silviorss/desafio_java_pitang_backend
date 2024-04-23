@@ -28,6 +28,8 @@ public class RestHandlerException {
 			return handleEmailAlreadyExistsException((EmailAlreadyExistsException) ex);
 		} else if (ex instanceof LoginAlreadyExistsException) {
 			return handleLoginAlreadyExistsException((LoginAlreadyExistsException) ex);
+		} else if (ex instanceof UserNotFoundException)  {
+			return handleUserNotFoundException((UserNotFoundException) ex);
 		} else {
         	return handleInternalServerError();
         }
@@ -71,6 +73,12 @@ public class RestHandlerException {
 	}
     
     private ResponseEntity<MessageError> handleLoginAlreadyExistsException(LoginAlreadyExistsException ex) {
+    	StatusCodeException statusCode = new StatusCodeException(ex.getStatus(), ex.getCode());
+    	MessageError error = new MessageError(ex.getMessage(), statusCode);
+    	return ResponseEntity.status(ex.getCode()).body(error);
+	}
+    
+    private ResponseEntity<MessageError> handleUserNotFoundException(UserNotFoundException ex) {
     	StatusCodeException statusCode = new StatusCodeException(ex.getStatus(), ex.getCode());
     	MessageError error = new MessageError(ex.getMessage(), statusCode);
     	return ResponseEntity.status(ex.getCode()).body(error);

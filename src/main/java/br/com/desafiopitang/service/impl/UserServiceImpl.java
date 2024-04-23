@@ -1,6 +1,7 @@
 package br.com.desafiopitang.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -13,6 +14,7 @@ import br.com.desafiopitang.dao.UserDao;
 import br.com.desafiopitang.dto.UserDto;
 import br.com.desafiopitang.excpetion.EmailAlreadyExistsException;
 import br.com.desafiopitang.excpetion.LoginAlreadyExistsException;
+import br.com.desafiopitang.excpetion.UserNotFoundException;
 import br.com.desafiopitang.model.Car;
 import br.com.desafiopitang.model.User;
 import br.com.desafiopitang.service.UserService;
@@ -42,7 +44,16 @@ public class UserServiceImpl implements UserService {
 		repository.save(user);
 		return UserDto.fromUsuario(user);
 	}
-
+	
+	@Override
+	public UserDto findById(Long id) {
+		Optional<User> user = repository.findById(id);
+		if(user.isPresent()) {
+			return UserDto.fromUsuario(user.get());
+		} else {
+			throw new UserNotFoundException();
+		}
+	}
 
 	private List<Car> saveCarFromUser(List<Car> cars) {
 		List<Car> list = cars.stream()

@@ -54,6 +54,17 @@ public class UserServiceImpl implements UserService {
 			throw new UserNotFoundException();
 		}
 	}
+	
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		Optional<User> user = repository.findById(id);
+		if(user.isPresent()) {
+			repository.delete(user.get());
+		} else {
+			throw new UserNotFoundException();
+		}
+	}
 
 	private List<Car> saveCarFromUser(List<Car> cars) {
 		List<Car> list = cars.stream()
